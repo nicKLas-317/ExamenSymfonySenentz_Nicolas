@@ -1,0 +1,136 @@
+Versionner avec Git et mettre dans un repository public
+vous me donnerez le lien
+
+vous devez savoir créer le repo en ligne sur github.com
+pusher les codes vers le repository
+===================================================
+
+bootstrapping de l'application avec symfony.exe
+s'assurer d'avoir un bon environnement (version de php)
+la création peut prendre une dizaine de minute, prenez soin de tester cette commande avant le jour J
+
+==========================================================
+$ symfony new --full examen 
+
+cd dans le répertoire du projet
+démarer laragon ou wamp pour démarrer le mysql
+configurer le .env pour accéder à la base de données
+lancer le server interne avec symfony serve
+
+
+==========================================================
+
+Creation du Homecontroller pour héberger la vue des produits avec le twig correspondant
+
+$ php bin/console make:controller
+
+
+Création de la base de données avec Doctrine
+
+$ php bin/console doctrine:database:create
+
+
+création de HomeController
+
+==========================================================
+
+création de l'entité product
+name,slug,image,price
+Migration de l'entité
+
+-----------------------
+création de l'entité Category
+name,slug, description
+Migration de l'entité
+
+Insérer à la main deux produits
+Insérer deux catégories à la main
+
+HomeController
+Pour la page d'accueil affichez les produits avec l'image
+
+
+
+----------------------------
+
+création des controller, ProductController et CategoryController
+créer les routes CRUD  index/add/edit/delete et les pages de redirection, attention on fait ici l'admin donc 
+nommez vos routes correctement
+
+php bin/console make:controller
+
+----------------------------
+
+création de la relation OneToMany entre  Product et Category(indsertion de Category dans Product)
+cela se traduit par l'ajout de category_id dans la table Product
+
+$ php bin/console make:entity Product
+faire la migration
+
+$ php bin/console make:migration 
+
+éditer les produits pour leur assigner une catégorie dans phpmyadmin
+
+importer bootstrap 4.5
+créer un partial avec le menu de navigation de bootstrap
+
+
+----------------------------
+
+php bin/console make:form
+
+création des formtype de ProductType et CategoryType
+Pour addition et création et édition
+
+Pour utiliser bootstrap pour les forms
+dans le config/packages/twig.yaml  (se référer au site officiel pour plus d'information)
+
+twig:
+    form_themes: ['bootstrap_4_layout.html.twig']
+
+Affinage des form avec les types des champs :TextType,IntegerType,EntityType,SubmitType
+pas de fileType 
+-----------------
+création des templates pour le CRUD product et category
+
+Vue pour produit : index,add, edit    index.html.twig,add.html.twig,edit.html.twig
+Vue pour category : index,add, edit    index.html.twig,add.html.twig,edit.html.twig
+
+
+====================================================
+
+création de l'authentification SecurityController avec le maker
+
+
+$ php bin/console make:user
+
+$ php bin/console make:auth
+
+sélectionner Login form authenticator
+entrez le nom LoginFormAuthenticator
+laissez le nom par défaut pour SecurityController
+générez l'url /logout
+
+Ajouter deux users, un admin avec ROLE_ADMIN, un user employé avec ROLE_STAFF, un user normal avec ROLE_USER
+
+éditez le fichier security.yaml pour avoir la hiérarchie des roles, et un access control list
+
+
+
+créer le UserFormType
+
+$ php bin/console make:form
+
+dans security.yaml :
+access control
+
+
+création d'un user admin et d'un user normal à la main
+héritage des roles deux roles ROLE_USER et ROLE_ADMIN
+création d'un formtype utilisateur
+
+================================================================
+BONUS AFFINAGE
+
+Flash message
+
