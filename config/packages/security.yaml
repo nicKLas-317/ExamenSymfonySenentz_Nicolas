@@ -1,7 +1,14 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    role_hierarchy:
+        # ROLE_ADMIN: [ROLE_STAFF, ROLE_USER]
+        # ROLE_SUPER_ADMIN: [ROLE_ADMIN]
     providers:
         users_in_memory: { memory: null }
+        # app_user_provider:
+        #     entity:
+        #         class: App\Entity\User
+        #         property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -10,7 +17,21 @@ security:
             anonymous: true
             lazy: true
             provider: users_in_memory
-
+        # dev:
+        #     pattern: ^/(_(profiler|wdt)|css|images|js)/
+        #     security: false
+        # main:
+        #     access_denied_handler: App\Security\AccessDeniedHandler
+        #     anonymous: true
+        #     lazy: true
+        #     provider: app_user_provider
+        #     guard:
+        #         authenticators:
+        #             - App\Security\LoginFormAuthenticator
+        #     logout:
+        #         path: app_logout
+        #         # where to redirect after logout
+        #         target: app_login
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
