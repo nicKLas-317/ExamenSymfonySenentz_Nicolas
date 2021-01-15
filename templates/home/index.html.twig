@@ -13,7 +13,7 @@
       <div class="col-6" style="border:1px dashed red">
          <p>{{item.name}} ({{item.price}}€)</p>
 
-         <img class="rounded mx-auto d-block" src="images/{{ item.image }}" style="max-width: 40%; margin-bottom: 20px" alt="{{item.name}}">
+         <img class="rounded mx-auto d-block" src="{{ item.image }}" style="max-width: 40%; margin-bottom: 20px" alt="{{item.name}}">
 
         <div style="text-align: center;"> <a class="btn btn-success" href="{{path('detailProduit', {'id':item.id, 'slug':item.slug}) }}">Détails</a>
          <a class="btn btn-primary"

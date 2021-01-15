@@ -3,23 +3,18 @@ vous me donnerez le lien
 
 vous devez savoir créer le repo en ligne sur github.com
 pusher les codes vers le repository
-===================================================
+
 
 bootstrapping de l'application avec symfony.exe
 s'assurer d'avoir un bon environnement (version de php)
 la création peut prendre une dizaine de minute, prenez soin de tester cette commande avant le jour J
 
-==========================================================
 $ symfony new --full examen 
 
 cd dans le répertoire du projet
 démarer laragon ou wamp pour démarrer le mysql
 configurer le .env pour accéder à la base de données
 lancer le server interne avec symfony serve
-
-
-==========================================================
-
 Creation du Homecontroller pour héberger la vue des produits avec le twig correspondant
 
 $ php bin/console make:controller
@@ -31,7 +26,6 @@ $ php bin/console doctrine:database:create
 
 
 création de HomeController
-
 ==========================================================
 
 création de l'entité product
