@@ -36,10 +36,10 @@
                 {{ app.user.email }}
                 <a style="color:black; margin-left: 15px;" href="#"><img style="height: 45px;
                     width: 36px;" src="https://icon-library.com/images/my-cart-icon/my-cart-icon-19.jpg" alt=""></a>
-                <button class="btn btn-danger" style="margin-left: 15px;"><a style="color:black"
+                <button class="btn btn-danger" style="margin-left: 15px;"><a style="color:black; text-decoration: none"
                         href="{{ path('app_logout') }}">Déconnexion</a> </button>
                 {% else %}
-                Vous n'êtes pas connecté <button class="btn btn-primary"><a style="color:black"
+                <button class="btn btn-primary"><a style="color:black; text-decoration: none"
                         href="{{ path('app_login') }}">Connexion</a></button>
                 {% endif %}
             </div>

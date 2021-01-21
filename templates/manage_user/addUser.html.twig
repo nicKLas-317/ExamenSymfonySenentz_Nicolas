@@ -11,15 +11,15 @@
 {% endfor %}
 
 <div class="container">
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-6">
-            <button onClick="window.history.back();"  class="btn btn-warning" type="button">Retour</button>
+            <button onClick="window.history.back();" class="btn btn-warning" type="button">Retour</button>
         </div>
     </div>
     {{ form_start(form)}}
 
     {{ form_row(form._token) }}
-    
+
     {{ form_label(form.email,'Email') }}
     {{ form_widget(form.email,{'attr':{'maxlength':'50'}}) }}
 

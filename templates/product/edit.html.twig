@@ -9,8 +9,8 @@
 
     <div class="row mt-5">
         <div class="col-6">
-            {{ form_start(form) }}
-
+            {{ form(form) }}
+{# 
             {{ form_row(form._token) }}
 
             {{ form_label(form.nom,'Nom produit') }}
@@ -34,7 +34,7 @@
             {{ form_label(form.save,'Ajouter produit') }}
             {{ form_widget(form.save) }}
 
-            {{ form_end(form, {'render_rest': false}) }}
+            {{ form_end(form, {'render_rest': false}) }} #}
         </div>
 
 

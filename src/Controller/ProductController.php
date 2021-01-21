@@ -12,15 +12,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+
 class ProductController extends AbstractController
 {
 
     /**
-     * @Route("/products", name="produits")
+     * @Route("admin/products", name="produits")
      */
     public function index(ProductRepository $productRepository): Response
     {
-        // REstrictions 
+        // REstrictions Users
         $this->denyAccessUnlessGranted('ROLE_STAFF');
 
         $products = $productRepository->findAll();
@@ -35,26 +37,29 @@ class ProductController extends AbstractController
      */
     public function detailProduct(EntityManagerInterface $em, $id): Response
     {
+        // NO REstrictions Users : all users can see this page
+    
         $product = $em->getRepository(Product::class)->find($id);
 
-        // dd($product);
         return $this->render('product/productDetail.html.twig', [
             'product' => $product
         ]);
     }
 
     /**
-     * @Route("/admin/product/add",name="ajoutProduct")
+     * @Route("admin/product/add",name="ajoutProduct")
      */
     public function addProduct(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
+        // REstrictions Users
+        $this->denyAccessUnlessGranted('ROLE_STAFF');
+
         $product = new Product;
         $form = $this->createForm(ProductFormType::class, $product);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $product->setSlug($slugger->slug($product->getNom()));
             $idCategory = $form['category']->getData()->getId();
             $em->persist($product);
@@ -72,10 +77,13 @@ class ProductController extends AbstractController
 
 
     /**
-     * @Route("/admin/product/edit/{id}", name="editProduct")
+     * @Route("admin/product/edit/{id}", name="editProduct")
      */
     public function editProduct(Request $request, EntityManagerInterface $em, $id): Response
     {
+        // REstrictions Users
+        $this->denyAccessUnlessGranted('ROLE_STAFF');
+
         $product = $em->getRepository(Product::class)->find($id);
         $form = $this->createForm(ProductFormType::class, $product);
 
@@ -96,18 +104,18 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/product/delete/{id}", name= "deleteProduct")
+     * @Route("admin/product/delete/{id}", name= "deleteProduct")
      */
     public function deleteProduct(EntityManagerInterface $em, $id)
     {
-        // REstrictions admin
-        // $this->denyAccessUnlessGranted('ROLE_STAFF');
+        // REstrictions Users
+        $this->denyAccessUnlessGranted('ROLE_STAFF');
+
         $product = $em->getRepository(Product::class)->find($id);
 
         $em->remove($product);
         $em->flush();
         $this->addFlash('success', 'Le produit a bien été supprimé ;)');
-
 
         return $this->redirectToRoute('produits');
     }

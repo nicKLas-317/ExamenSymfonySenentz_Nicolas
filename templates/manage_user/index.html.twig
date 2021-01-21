@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello, voici tous nos users !{% endblock %}
+{% block title %}Manage Users{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -10,13 +10,14 @@
         </div>
         {% if is_granted('ROLE_ADMIN') %}
         <div class="col-6">
-            <button class="btn btn-danger" type="button"> <a style="color: black; text-decoration:none;"href="{{path('ajoutUser')}}">Ajouter un User</a> </button>
+            <button class="btn btn-danger" type="button"> <a style="color: black; text-decoration:none;"
+                    href="{{path('ajoutUser')}}">Ajouter un User</a> </button>
         </div>
         {% endif %}
     </div>
     <div class="row" style="padding-top: 15px;">
         <h2>Utilisateurs</h2>
-        <table class="table"s>
+        <table class="table" s>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -26,30 +27,27 @@
                 <th style="text-align: center;">Supprimer user</th>
 
                 {% for user in users %}
-
-
             <tr>
                 <td> {{user.id}}</td>
                 <td>Ano Nymous</td>
                 <td> {{user.email}}</td>
                 {% if 'ROLE_ADMIN' in user.roles  %}
-                    <td>Admin</td>
+                <td>Admin</td>
                 {% elseif 'ROLE_STAFF' in user.roles %}
-                    <td>Staff</td>
+                <td>Staff</td>
                 {% else %}
-                    <td>User</td>
-                {% endif %} 
+                <td>User</td>
+                {% endif %}
                 <td style="text-align: center;"><a href="{{path('editUser', {'id':user.id})}}"><img style="width: 15%;"
                             src="https://static.thenounproject.com/png/3082134-200.png" alt=""></a></td>
                 <td style="text-align: center;"><a href="{{path('deleteUser', {'id':user.id})}}"><img style="width: 6%;"
-                    src="https://icon-library.com/images/delete-icon-image/delete-icon-image-15.jpg" alt=""></a></td>
+                            src="https://icon-library.com/images/delete-icon-image/delete-icon-image-15.jpg" alt=""></a>
+                </td>
             </tr>
             <br />
             {% endfor %}
             </tr>
         </table>
     </div>
-
-
 </div>
 {% endblock %}
