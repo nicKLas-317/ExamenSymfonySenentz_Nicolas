@@ -38,7 +38,7 @@ class ProductController extends AbstractController
     public function detailProduct(EntityManagerInterface $em, $id): Response
     {
         // NO REstrictions Users : all users can see this page
-    
+
         $product = $em->getRepository(Product::class)->find($id);
 
         return $this->render('product/productDetail.html.twig', [

@@ -4,7 +4,6 @@
 
 {% block body %}
 
-
 <div class="container">
     <div class="row">
         <div class="col-6">
@@ -25,7 +24,6 @@
                 <th>Supprimer</th>
 
                 {% for product in listeProduits %}
-
             <tr>
                 <td><a href="{{path('detailProduit', {'id':product.id, 'slug':product.slug}) }}">{{product.nom}}</a>
                 </td>
@@ -37,7 +35,6 @@
                 <td><a href="{{path('deleteProduct', {'id':product.id})}}"><img style="width: 6%;"
                             src="https://icon-library.com/images/delete-icon-image/delete-icon-image-15.jpg" alt=""></a>
                 </td>
-
             </tr>
             <br />
             {% endfor %}

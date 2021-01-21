@@ -99,7 +99,7 @@ class ManageUserController extends AbstractController
         $user = $em->getRepository(User::class)->find($id);
        
         if(in_array('ROLE_ADMIN', $user->getRoles())){
-            $this->addFlash('error', 'Impossible de supprimer ce user');
+            $this->addFlash('error', 'Vous ne pouvez pas vous supprimer vous-même ;-) ');
             return $this->redirectToRoute('userList');
         }
       

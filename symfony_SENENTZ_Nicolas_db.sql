@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 21 jan. 2021 à 13:33
+-- Généré le : jeu. 21 jan. 2021 à 14:31
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `category`
@@ -42,7 +42,8 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 INSERT INTO `category` (`id`, `nom`, `description`, `slug`) VALUES
 (1, 'Smartphones', 'De jolis smartphones dernière génération', 'smartphones'),
-(5, 'Jeu vidéo', 'Des consoles pour les (grands) enfants !!', 'jeu-video');
+(5, 'Jeu vidéo', 'Des consoles pour les (grands) enfants !!', 'jeu-video'),
+(7, 'new Caté', 'Blabla', 'new');
 
 -- --------------------------------------------------------
 
@@ -84,15 +85,15 @@ CREATE TABLE IF NOT EXISTS `product` (
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_D34A04AD12469DE2` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `product`
 --
 
 INSERT INTO `product` (`id`, `nom`, `prix`, `slug`, `image`, `category_id`) VALUES
-(13, 'Wiko', 85, 'Wiko', 'https://static.fnac-static.com/multimedia/Images/FR/MDM/87/7a/d7/14121607/1540-1/tsp20200701181123/Smartphone-Wiko-View-4-Lite-Double-SIM-32-Go-Bleu.jpg', 1),
-(14, 'Xbox series X', 480, 'Xbox-series-x', 'https://static.fnac-static.com/multimedia/Images/FR/MDM/5a/59/ec/15489370/1540-1/tsp20201109190431/Console-Microsoft-Xbox-Series-X-Noir.jpg', 5);
+(14, 'Xbox series X', 480, 'Xbox-series-x', 'https://static.fnac-static.com/multimedia/Images/FR/MDM/5a/59/ec/15489370/1540-1/tsp20201109190431/Console-Microsoft-Xbox-Series-X-Noir.jpg', 5),
+(16, 'Wiko', 85, 'Wiko', 'https://static.fnac-static.com/multimedia/Images/FR/MDM/87/7a/d7/14121607/1540-1/tsp20200701181123/Smartphone-Wiko-View-4-Lite-Double-SIM-32-Go-Bleu.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
