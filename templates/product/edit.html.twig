@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un produit{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <button onClick="window.history.back();" class="btn btn-warning" type="button">Retour</button>
+
+    <div class="row mt-5">
+        <div class="col-6">
+            {{ form_start(form) }}
+
+            {{ form_row(form._token) }}
+
+            {{ form_label(form.nom,'Nom produit') }}
+            {{ form_widget(form.nom,{'attr':{'maxlength':'50'}}) }}
+            <br>
+            {{ form_label(form.prix,'Prix produit') }}
+            {{ form_widget(form.prix,{'attr':{'maxlength':'50'}}) }}
+
+            <div hidden>
+                {{ form_label(form.slug,'slug') }}
+                {{ form_widget(form.slug) }}
+            </div>
+            <br>
+
+            {{ form_label(form.image,'') }}
+            {{ form_widget(form.image,{'attr':{'maxlength':'255'}}) }}
+            <br>
+            {{ form_label(form.category,'Catégorie') }}
+            {{ form_widget(form.category)}}
+            <br>
+            {{ form_label(form.save,'Ajouter produit') }}
+            {{ form_widget(form.save) }}
+
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

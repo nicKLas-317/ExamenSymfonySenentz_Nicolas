@@ -4,23 +4,33 @@
 <div class="container">
    <div class="row">
       <div class="col-md-12">
-         <h2>Dans notre belle boutique, nous avons : </h2> <br>
+         <h2>Bienvenue sur notre boutique ! </h2> <br>
       </div>
    </div>
 
    <div class="row">
-      {# {% for item in products %}
-      <div class="col-6" style="border:1px dashed red">
-         <p>{{item.name}} ({{item.price}}€)</p>
+      {% for item in products %}
+      <div class="card ml-5" style="width: 18rem;">
+         <img class="card-img-top" src="{{ item.image }}" alt="Card image cap">
+         <div class="card-body">
+            <h5 class="card-title">{{item.nom}}</h5>
+            <div style="text-align: center;"> <a class="btn btn-primary" href="{{path('detailProduit', {'id':item.id, 'slug':item.slug}) }}">Détails</a>
+         </div>
+      </div>
+      {% endfor %}
 
-         <img class="rounded mx-auto d-block" src="{{ item.image }}" style="max-width: 40%; margin-bottom: 20px" alt="{{item.name}}">
 
-        <div style="text-align: center;"> <a class="btn btn-success" href="{{path('detailProduit', {'id':item.id, 'slug':item.slug}) }}">Détails</a>
+
+
+      {# <div class="col-6">
+
+
+       
          <a class="btn btn-primary"
          href="{{path('addToCart', {'id':item.id}) }}">Ajouter au panier</a>
       </div>
-      </div>
-      {% endfor %} #}
+      </div> #}
+
    </div>
 </div>
 

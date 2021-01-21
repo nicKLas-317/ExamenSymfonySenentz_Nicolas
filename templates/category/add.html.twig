@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ajouter une catégorie {% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+   <div class="row">
+    <div class="col-6">
+        <button onClick="window.history.back();"  class="btn btn-warning" type="button">Retour</button>
+    </div>
+   </div>
+    {{form(form)}}
+</div>
+
+{# OU ALORS 
+    
+    
+{{ form_start(form)}}
+
+{{ form_label(form.name,'nom produit') }}
+{{ form_widget(form.name,{'attr':{'maxlength':'50'}}) }}
+
+{{ form_label(form.price,'Prix produit') }}
+{{ form_widget(form.price,{'attr':{'maxlength':'50'}}) }}
+
+{{ form_label(form.img,'Image') }}
+{{ form_widget(form.img,{'attr':{'maxlength':'255'}}) }}
+
+{{ form_label(form.category,'Catégorie') }}
+{{ form_widget(form.category)}}
+
+{{ form_label(form.save,'Ajouter produit') }}
+{{ form_widget(form.save) }}
+
+{{ form_end(form, {'render_rest': false}) }} #}
+
+
+{% endblock %}

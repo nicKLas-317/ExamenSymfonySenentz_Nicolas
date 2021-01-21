@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails d'une catégorie {% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <button onClick="window.history.back();" class="btn btn-warning" type="button">Retour</button>
+        </div>
+    </div>
+    {% if listeProduits %}
+    <div class="row mt-5 mb-5">
+        <h2>Voici la liste des produits pour {{category.nom }}</h2>
+    </div>
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Image</th>
+                <th>Editer</th>
+                <th>Supprimer</th>
+
+                {% for product in listeProduits %}
+
+            <tr>
+                <td><a href="{{path('detailProduit', {'id':product.id, 'slug':product.slug}) }}">{{product.nom}}</a>
+                </td>
+                <td> {{product.prix}}</td>
+                <td> <img class="rounded mx-auto d-block" src="{{ product.image }}" style="max-width: 15%"
+                        alt="No image"></td>
+                <td><a href="{{path('editProduct', {'id':product.id})}}"><img style="width: 13%;"
+                            src="https://static.thenounproject.com/png/3082134-200.png" alt=""></a></td>
+                <td><a href="{{path('deleteProduct', {'id':product.id})}}"><img style="width: 6%;"
+                            src="https://icon-library.com/images/delete-icon-image/delete-icon-image-15.jpg" alt=""></a>
+                </td>
+
+            </tr>
+            <br />
+            {% endfor %}
+            </tr>
+        </table>
+    </div>
+    {% else %}
+    <div class="row mt-5 mb-5">
+        <div class="col-6">
+            <p style="font-weight: bold;">Malheureusement, {{category.nom }} n'a pas de produits pour l'instant :(</p>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-primary" type="button"><a style="color: black; text-decoration:none;"
+                    href="{{path('admin_categories')}}">Voir les
+                    catégories</a></button>
+        </div>
+        <div class="col-3">
+            <button class="btn btn-success" type="button"><a style="color: black; text-decoration:none;"
+                    href="{{path('produits')}}">Voir les produits</a></button>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

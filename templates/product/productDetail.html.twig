@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.nom}}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        {% if is_granted('ROLE_STAFF') %}
+        <div class="col-6">
+            <button class="btn btn-primary" type="button"><a style="color: black; text-decoration:none;" href="{{path('admin_categories')}}">Voir les catégories</a></button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-success" type="button"><a style="color: black; text-decoration:none;" href="{{path('produits')}}">Voir tous les produits</a></button>
+        </div>
+        {% endif %}
+        <div class="col-6">
+            <button onClick="window.history.back();"  class="btn btn-warning" type="button">Retour</button>
+        </div>
+    </div>
+
+    <div class="card mt-5" style="width: 18rem;">
+        <img class="rounded mx-auto d-block" src="{{ product.image }}" style="max-width: 40%" alt="{{product.nom}}">
+        <div class="card-body">
+          <h5 class="card-title"> {{ product.nom}}</h5>
+          <p class="card-text">{{ product.prix}} €</p>
+          <a href="#" class="btn btn-primary">Ajouter au panier</a>
+        </div>
+      </div>
+
+
+
+
+
+
+    {# {{ dump(product) }} #}
+    {# <p>Nom du produit sélectionné : {{ product.nom}}</p>
+    <p>Prix : {{ product.prix}}</p>
+    <p>Slug : {{ product.slug}}</p> #}
+</div>
+{% endblock %}

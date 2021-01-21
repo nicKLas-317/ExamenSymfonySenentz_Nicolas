@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Ajouter un user {% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('success') %}
+<div class="alert alert-success">
+    {{ message | raw}}
+</div>
+{% endfor %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <button onClick="window.history.back();"  class="btn btn-warning" type="button">Retour</button>
+        </div>
+    </div>
+    {{ form_start(form)}}
+
+    {{ form_row(form._token) }}
+    
+    {{ form_label(form.email,'Email') }}
+    {{ form_widget(form.email,{'attr':{'maxlength':'50'}}) }}
+
+    {{ form_label(form.roles,'Rôle') }}
+    {{ form_widget(form.roles,{'attr':{'maxlength':'50'}}) }}
+
+    {{ form_label(form.password,'Password') }}
+    {{ form_widget(form.password)}}
+
+    {{ form_label(form.save,'Ajouter user') }}
+    {{ form_widget(form.save) }}
+
+    {{ form_end(form, {'render_rest': false}) }}
+</div>
+
+
+{% endblock %}
